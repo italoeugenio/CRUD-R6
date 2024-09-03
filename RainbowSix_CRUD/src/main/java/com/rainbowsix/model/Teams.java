@@ -26,10 +26,6 @@ public class Teams {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public ArrayList<Player> getJogadores() {
         return jogadores;
     }
