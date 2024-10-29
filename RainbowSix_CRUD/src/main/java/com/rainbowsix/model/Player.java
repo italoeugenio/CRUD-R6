@@ -3,32 +3,32 @@ package main.java.com.rainbowsix.model;
 public class Player {
     private int id;
     private String nickname;
-    private String nomeDoJogador;
-    private Funcao funcao;
-    private String nacionalidade;
-    private int idade;
-    private Teams timeAtual;
+    private String playerName;
+    private Role role;
+    private String nationality;
+    private int age;
+    private Team currentTeam;
 
-    public Player(int id, String nickname, String nomeDoJogador, Funcao funcao, String nacionalidade, int idade, Teams timeAtual) {
+    public Player(int id, String nickname, String playerName, Role role, String nationality, int age, Team currentTeam) {
         this.id = id;
         this.nickname = nickname;
-        this.nomeDoJogador = nomeDoJogador;
-        this.funcao = funcao;
-        this.nacionalidade = nacionalidade;
-        this.idade = idade;
-        this.timeAtual = timeAtual;
+        this.playerName = playerName;
+        this.role = role;
+        this.nationality = nationality;
+        this.age = age;
+        this.currentTeam = currentTeam;
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "funcao=" + funcao +
+                "role=" + role +
                 ", id=" + id +
                 ", nickname='" + nickname + '\'' +
-                ", nomeDoJogador='" + nomeDoJogador + '\'' +
-                ", nacionalidade='" + nacionalidade + '\'' +
-                ", idade=" + idade +
-                ", timeAtual=" + timeAtual +
+                ", playerName='" + playerName + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", age=" + age +
+                ", currentTeam=" + currentTeam +
                 '}';
     }
 
@@ -36,28 +36,28 @@ public class Player {
         return id;
     }
 
-    public Funcao getFuncao() {
-        return funcao;
+    public Role getRole() {
+        return role;
     }
 
-    public void setFuncao(Funcao funcao) {
-        this.funcao = funcao;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public int getIdade() {
-        return idade;
+    public int getAge() {
+        return age;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getNacionalidade() {
-        return nacionalidade;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setNacionalidade(String nacionalidade) {
-        this.nacionalidade = nacionalidade;
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
     public String getNickname() {
@@ -68,19 +68,19 @@ public class Player {
         this.nickname = nickname;
     }
 
-    public String getNomeDoJogador() {
-        return nomeDoJogador;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setNomeDoJogador(String nomeDoJogador) {
-        this.nomeDoJogador = nomeDoJogador;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
-    public Teams getTimeAtual() {
-        return timeAtual;
+    public Team getCurrentTeam() {
+        return currentTeam;
     }
 
-    public void setTimeAtual(Teams timeAtual) {
-        this.timeAtual = timeAtual;
+    public void setCurrentTeam(Team currentTeam) {
+        this.currentTeam = currentTeam;
     }
 }
