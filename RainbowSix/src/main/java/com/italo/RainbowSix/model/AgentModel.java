@@ -1,10 +1,12 @@
 package com.italo.RainbowSix.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "TB_AGENTS")
 public class AgentModel implements Serializable {
