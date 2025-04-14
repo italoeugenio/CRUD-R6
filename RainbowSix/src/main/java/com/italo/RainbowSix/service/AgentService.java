@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AgentService {
@@ -39,5 +41,16 @@ public class AgentService {
         return ResponseEntity.status(HttpStatus.CREATED).body(agentRepository.save(agentModel));
     }
 
+    public ResponseEntity<List<AgentModel>> getAllAgents(){
+        return ResponseEntity.status(HttpStatus.OK).body(agentRepository.findAll());
+    }
+
+    public ResponseEntity<?> getAgentByID(UUID id){
+        Optional<AgentModel> agentModel = agentRepository.findById(id);
+        if(agentModel.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
+        return ResponseEntity.status(HttpStatus.FOUND).body(agentModel);
+    }
 
 }
