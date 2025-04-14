@@ -8,6 +8,5 @@ public class RainbowSixApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RainbowSixApplication.class, args);
 	}
-
 }
 

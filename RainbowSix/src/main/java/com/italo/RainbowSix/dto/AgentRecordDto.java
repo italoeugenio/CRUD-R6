@@ -1,4 +1,7 @@
 package com.italo.RainbowSix.dto;
 
-public record AgentRecordDto(String name, int speed, int shield) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record AgentRecordDto(@NotBlank String name, @NotNull Integer speed, @NotNull Integer shield) {
 }

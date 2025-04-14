@@ -16,6 +16,6 @@ public class AgentModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
     private String name;
-    private int speed;
-    private int shield;
+    private Integer speed;
+    private Integer shield;
 }
