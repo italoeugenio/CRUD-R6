@@ -18,6 +18,11 @@ public class AgentController {
     @Autowired
     private AgentService agentService;
 
+    @GetMapping("/")  // ou @GetMapping("")
+    public ResponseEntity<String> home() {
+        return ResponseEntity.ok("Rainbow Six Agents API - Base Endpoint");
+    }
+
     @PostMapping("/post")
     public ResponseEntity<Object> saveAgent(@RequestBody @Valid AgentRecordDto agentRecordDto){
         return agentService.saveAgent(agentRecordDto);
