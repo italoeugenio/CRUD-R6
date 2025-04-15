@@ -12,7 +12,7 @@
 	<artifactId>RainbowSix</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>RainbowSix</name>
-	<description>This is a crud tu study about spring</description>
+	<description>This is a crud to study about spring</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -66,6 +66,11 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version> <!-- Para Spring Boot 3.x -->
+		</dependency>
 	</dependencies>
 
 	<build>
