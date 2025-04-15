@@ -18,8 +18,8 @@ public class AgentController {
     @Autowired
     private AgentService agentService;
 
-    @GetMapping("/")  // ou @GetMapping("")
-    public ResponseEntity<String> home() {
+    @GetMapping("/")
+    public ResponseEntity<String> baseEndPoint() {
         return ResponseEntity.ok("Rainbow Six Agents API - Base Endpoint");
     }
 
