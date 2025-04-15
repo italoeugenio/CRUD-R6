@@ -19,7 +19,7 @@ public class AgentController {
     private AgentService agentService;
 
     @PostMapping("/post")
-    public ResponseEntity<?> saveAgent(@RequestBody @Valid AgentRecordDto agentRecordDto){
+    public ResponseEntity<Object> saveAgent(@RequestBody @Valid AgentRecordDto agentRecordDto){
         return agentService.saveAgent(agentRecordDto);
     }
 
@@ -29,7 +29,13 @@ public class AgentController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<?> getAgent(@PathVariable("id") UUID id){
+    public ResponseEntity<Object> getAgent(@PathVariable("id") UUID id){
         return agentService.getAgentByID(id);
     }
+
+    @PutMapping("put/{id}")
+    public ResponseEntity<Object> updateAgent(@PathVariable("id") UUID uuid, @RequestBody @Valid AgentRecordDto agentRecordDto){
+        return agentService.updateAgent(uuid, agentRecordDto);
+    }
+
 }

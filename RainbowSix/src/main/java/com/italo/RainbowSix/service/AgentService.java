@@ -3,7 +3,6 @@ package com.italo.RainbowSix.service;
 import com.italo.RainbowSix.dto.AgentRecordDto;
 import com.italo.RainbowSix.model.AgentModel;
 import com.italo.RainbowSix.repository.AgentRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ public class AgentService {
     @Autowired
     private AgentRepository agentRepository;
 
-    public ResponseEntity<?> saveAgent(@RequestBody @Valid AgentRecordDto agentRecordDto){
+    public ResponseEntity<Object> saveAgent(@RequestBody AgentRecordDto agentRecordDto){
         List<AgentModel> list = agentRepository.findAll();
         for(AgentModel agents:list){
             if(agentRecordDto.name().equals(agents.getName())){
@@ -45,12 +44,29 @@ public class AgentService {
         return ResponseEntity.status(HttpStatus.OK).body(agentRepository.findAll());
     }
 
-    public ResponseEntity<?> getAgentByID(UUID id){
+    public ResponseEntity<Object> getAgentByID(UUID id){
         Optional<AgentModel> agentModel = agentRepository.findById(id);
         if(agentModel.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Agent not found");
         }
         return ResponseEntity.status(HttpStatus.FOUND).body(agentModel);
     }
 
+    public ResponseEntity<Object> updateAgent(UUID id, @RequestBody AgentRecordDto agentRecordDto) {
+        Optional<AgentModel> OptionalagentModel = agentRepository.findById(id);
+        if(OptionalagentModel.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Agent not found");
+        }
+        AgentModel agentModel = OptionalagentModel.get();
+        BeanUtils.copyProperties(agentRecordDto, agentModel);
+        if((agentRecordDto.speed() < 1 || agentRecordDto.speed() > 3) || (agentRecordDto.shield() < 1 || agentRecordDto.shield() > 3)){
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+                    .body("Speed and shield values must be between 1-3");
+        }else if((agentRecordDto.shield() + agentRecordDto.speed() != 4)){
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+                    .body
+                            ("The sum of shield and speed need be 4");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(agentRepository.save(agentModel));
+    }
 }
