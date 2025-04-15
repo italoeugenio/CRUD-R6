@@ -38,4 +38,9 @@ public class AgentController {
         return agentService.updateAgent(uuid, agentRecordDto);
     }
 
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Object> deleteAgent(@PathVariable("id") UUID id){
+        return agentService.deleteAgent(id);
+    }
+
 }

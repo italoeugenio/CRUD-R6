@@ -53,11 +53,11 @@ public class AgentService {
     }
 
     public ResponseEntity<Object> updateAgent(UUID id, @RequestBody AgentRecordDto agentRecordDto) {
-        Optional<AgentModel> OptionalagentModel = agentRepository.findById(id);
-        if(OptionalagentModel.isEmpty()){
+        Optional<AgentModel> OptionlAgentModel = agentRepository.findById(id);
+        if(OptionlAgentModel.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Agent not found");
         }
-        AgentModel agentModel = OptionalagentModel.get();
+        AgentModel agentModel = OptionlAgentModel.get();
         BeanUtils.copyProperties(agentRecordDto, agentModel);
         if((agentRecordDto.speed() < 1 || agentRecordDto.speed() > 3) || (agentRecordDto.shield() < 1 || agentRecordDto.shield() > 3)){
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
@@ -68,5 +68,14 @@ public class AgentService {
                             ("The sum of shield and speed need be 4");
         }
         return ResponseEntity.status(HttpStatus.OK).body(agentRepository.save(agentModel));
+    }
+
+    public ResponseEntity<Object> deleteAgent(UUID id){
+        Optional<AgentModel> OptionalAgentModel = agentRepository.findById(id);
+        if(OptionalAgentModel.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Agent don´t found");
+        }
+        agentRepository.delete(OptionalAgentModel.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Agent Deleted");
     }
 }
