@@ -18,7 +18,7 @@ import java.util.UUID;
 public class AgentService {
     @Autowired
     private AgentRepository agentRepository;
-    // test commit
+
     public ResponseEntity<Object> saveAgent(@RequestBody AgentRecordDto agentRecordDto){
         List<AgentModel> list = agentRepository.findAll();
         for(AgentModel agents:list){
@@ -52,6 +52,14 @@ public class AgentService {
         return ResponseEntity.status(HttpStatus.FOUND).body(agentModel);
     }
 
+    public ResponseEntity<String> getAgentByName(String name){
+        Optional<AgentModel> list = agentRepository.findByName(name);
+        if(list.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Name don,t found");
+        }
+        return ResponseEntity.status(HttpStatus.FOUND).body(list.get().getName());
+    }
+
     public ResponseEntity<Object> updateAgent(UUID id, @RequestBody AgentRecordDto agentRecordDto) {
         Optional<AgentModel> OptionlAgentModel = agentRepository.findById(id);
         if(OptionlAgentModel.isEmpty()){
@@ -78,4 +86,6 @@ public class AgentService {
         agentRepository.delete(OptionalAgentModel.get());
         return ResponseEntity.status(HttpStatus.OK).body("Agent Deleted");
     }
+
+
 }

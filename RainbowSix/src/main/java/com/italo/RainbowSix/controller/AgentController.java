@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/agent")
+@RequestMapping("agent")
 public class AgentController {
 
     @Autowired
@@ -38,14 +38,19 @@ public class AgentController {
         return agentService.getAgentByID(id);
     }
 
-    @PutMapping("put/{id}")
+    @PutMapping("/put/{id}")
     public ResponseEntity<Object> updateAgent(@PathVariable("id") UUID uuid, @RequestBody @Valid AgentRecordDto agentRecordDto){
         return agentService.updateAgent(uuid, agentRecordDto);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteAgent(@PathVariable("id") UUID id){
         return agentService.deleteAgent(id);
+    }
+
+    @GetMapping("/get/{name}")
+    public ResponseEntity<String> getAgentByName(@PathVariable("name") String name){
+        return agentService.getAgentByName(name);
     }
 
 }
