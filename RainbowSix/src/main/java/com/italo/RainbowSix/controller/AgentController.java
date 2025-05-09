@@ -33,12 +33,12 @@ public class AgentController {
         return agentService.getAllAgents();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/id/{id}")
     public ResponseEntity<Object> getAgent(@PathVariable("id") UUID id){
         return agentService.getAgentByID(id);
     }
 
-    @PutMapping("/put/{id}")
+    @PutMapping("/put/id/{id}")
     public ResponseEntity<Object> updateAgent(@PathVariable("id") UUID uuid, @RequestBody @Valid AgentRecordDto agentRecordDto){
         return agentService.updateAgent(uuid, agentRecordDto);
     }
@@ -48,7 +48,7 @@ public class AgentController {
         return agentService.deleteAgent(id);
     }
 
-    @GetMapping("/get/{name}")
+    @GetMapping("/get/name/{name}")
     public ResponseEntity<String> getAgentByName(@PathVariable("name") String name){
         return agentService.getAgentByName(name);
     }
